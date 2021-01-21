@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //Bootstrap elements
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 //Toast messages
 import { ToastContainer, toast } from 'react-toastify';
@@ -25,10 +26,12 @@ class App extends React.Component {
             messageList: [],
             convListItems: [],
             selectedConvId: '',
-            listView: false
+            listView: false,
+            showModal: false
         }
 
         this.loadMessages = this.loadMessages.bind(this);
+        this.hideModal = this.hideModal.bind(this);
 
         //Event receivers
         this.onConvListAdd = this.onConvListAdd.bind(this);
@@ -79,12 +82,17 @@ class App extends React.Component {
         }));
     }
 
+    hideModal() {
+        this.setState({ showModal: false });
+    }
+
     loadMessages(event) {
         const id = event.target.id;
         fetch(`http://0.0.0.0:8568/conversations/${id}`)
             .then(res => res.json())
             .then(res => {
                 this.setState({
+                    showModal: true,
                     selectedConvId: id,
                     messageList: res
                 });
@@ -95,7 +103,7 @@ class App extends React.Component {
 
 
     render() {
-        const { messageList, selectedConvId, convListItems, listView } = this.state;
+        const { messageList, selectedConvId, convListItems, listView, showModal } = this.state;
         
         if (listView) {
             return (
@@ -103,12 +111,20 @@ class App extends React.Component {
                     <ToastContainer></ToastContainer>
                     <ConvList loadMessages={this.loadMessages} selectedConvId={selectedConvId} notifyError={this.notifyError}
                         convListItems={convListItems} onConvListUpdate={this.onConvListUpdate} listView={listView}></ConvList>
-                    <Button variant='outline-secondary' key='listViewBtn' className='listViewBtn' id='listViewBtn' onClick={this.onListViewSwitch}>Vue Liste</Button>
-                    <div className='messageListWrapper'>
-                        <ListGroup  className='msgList' variant='flush'>
-                            { messageList.map(msgElem => <ListGroup.Item key={msgElem.id} id={msgElem.id}>{msgElem.msg}</ListGroup.Item>) }
-                        </ListGroup>
-                    </div>
+                    <Button variant='dark' key='listViewBtn' className='listViewBtn' id='listViewBtn' onClick={this.onListViewSwitch}>Vue Globale</Button>
+
+
+                    <Modal show={showModal} centered>
+                        <Modal.Header>
+                            <Modal.Title>Liste des messages</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ListGroup  className='msgListAlternate' variant='flush'>
+                                { messageList.map(msgElem => <ListGroup.Item key={msgElem.id} id={msgElem.id}>{msgElem.msg}</ListGroup.Item>) }
+                            </ListGroup>
+                        </Modal.Body>
+                        <Modal.Footer><Button onClick={this.hideModal}>Fermer</Button></Modal.Footer>
+                    </Modal>
                 </div>
             )
         }
@@ -121,7 +137,7 @@ class App extends React.Component {
                 <ConvList loadMessages={this.loadMessages} selectedConvId={selectedConvId} notifyError={this.notifyError}
                     convListItems={convListItems} onConvListUpdate={this.onConvListUpdate}></ConvList>
                 <CloseConv notifyError={this.notifyError} selectedConvId={selectedConvId} onConvClosed={this.onConvClosed}></CloseConv>
-                <Button variant='outline-secondary' key='listViewBtn' className='listViewBtn' id='listViewBtn' onClick={this.onListViewSwitch}>Vue Liste</Button>
+                <Button variant='dark' key='listViewBtn' className='listViewBtn' id='listViewBtn' onClick={this.onListViewSwitch}>Vue Liste</Button>
                 
                 <div className='messageListWrapper'>
                     <ListGroup  className='msgList' variant='flush'>

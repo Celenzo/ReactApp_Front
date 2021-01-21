@@ -18,7 +18,7 @@ class ConvList extends React.Component {
     }
 
     loadConv() {
-        fetch("http://0.0.0.0:8568/conversations")
+        fetch(this.props.listView ? 'http://0.0.0.0:8568/conversations/all' : 'http://0.0.0.0:8568/conversations')
             .then(res => res.json())
             .then(res => {
                 this.setState({ loading: false });
@@ -34,7 +34,7 @@ class ConvList extends React.Component {
 
     render() {
         
-        const { convListItems, loadMessages, selectedConvId } = this.props;
+        const { convListItems, loadMessages, selectedConvId, listView } = this.props;
 
         if (this.state.loading) return (
             <Spinner animation="border" role="status" className='sideBarWrapper loadingSpinner'>
@@ -43,7 +43,7 @@ class ConvList extends React.Component {
         )
 
         return (
-            <div className='sideBarWrapper'>
+            <div className={ listView ? 'sideBarListWrapper' : 'sideBarWrapper'}>
                 <ListGroup> { convListItems.map(conv =>
                     <ListGroup.Item key={conv.id} id={conv.id} onClick={loadMessages} active={selectedConvId === conv.id ? true : false} >
                         {conv.name}

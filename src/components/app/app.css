@@ -15,8 +15,20 @@
     margin-right: 1rem;
 }
 
+.msgListAlternate {
+    height: 50rem;
+    overflow-y: scroll;
+    line-break: auto;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+}
+
 .listViewBtn {
     position: fixed;
     right: 20px;
     top: 25px;
+}
+
+.modal-dialog {
+    max-width: 75%;
 }
