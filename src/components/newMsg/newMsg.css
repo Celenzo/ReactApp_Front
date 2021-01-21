@@ -1,0 +1,25 @@
+.newMsgFormWrapper {
+    position: fixed;
+    bottom: 6rem;
+    height: 30px;
+    width: 100%;
+}
+  
+.msgInput {
+    text-align: left;
+    width: 70% !important;
+    display: inline-block !important;
+    box-shadow: 1px 0px 4px 0px #878787;
+}
+  
+.sendBtn {
+    position: fixed;
+    bottom: 30px;
+    height: 50px;
+    margin: 0 1rem;
+    width: 7%;
+}
+  
+  
+  
+  

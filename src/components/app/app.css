@@ -1,0 +1,22 @@
+.messageListWrapper {
+    margin-left: calc(20% + 2rem);
+    position: fixed;
+    height: 100%;
+    width: -webkit-fill-available;
+}
+
+.msgList {
+    height: 75%;
+    overflow-y: scroll;
+    border: 1px solid #b0b0b0;
+    box-shadow: 1px 0px 4px 0px #878787;
+    line-break: auto;
+    overflow-wrap: break-word;
+    margin-right: 1rem;
+}
+
+.listViewBtn {
+    position: fixed;
+    right: 20px;
+    top: 25px;
+}

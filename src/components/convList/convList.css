@@ -1,0 +1,20 @@
+.loadingSpinner {
+    width: 100%;
+    text-align: center;
+    margin: 50%;
+}
+  
+.sideBarWrapper {
+    height: calc(100% - 100px - 1rem);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    border: 1px solid #b0b0b0;
+    box-shadow: 1px 0px 4px 0px #878787;
+    width: 20%;
+    float: left;
+    padding: 15px;
+    margin: 100px 20px 0px 15px;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}

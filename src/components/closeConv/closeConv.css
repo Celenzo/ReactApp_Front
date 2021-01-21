@@ -1,0 +1,6 @@
+.closeBtn {
+    position: fixed;
+    right: 1rem;
+    margin: 20px;
+    z-index: 1;
+}

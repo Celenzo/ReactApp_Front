@@ -1,0 +1,15 @@
+.newConvWrapper {
+    height: 100px;
+    margin: 0;
+}
+  
+.newConvInput {
+    width: 225px !important;
+    display: inline-block !important;
+    margin: 25px 20px 10px 17px;
+    height: 50px !important;
+}
+  
+.newConvBtn {
+    width: 5rem;
+}
