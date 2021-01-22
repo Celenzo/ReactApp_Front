@@ -55,8 +55,6 @@ class App extends React.Component {
 
     onListViewSwitch() {
         this.setState({ listView: !this.state.listView });
-
-        console.log(this.state.listView)
     }
 
     onConvListUpdate(elems) {
